@@ -10,6 +10,14 @@ public class Main
         return Math.ceil(number) == Math.floor(number);
     }
 
+    private static DecimalFormatSymbols getDecimalFormatSymbols()
+    {
+        DecimalFormatSymbols dfSymbols = new DecimalFormatSymbols();
+        dfSymbols.setDecimalSeparator('.');
+        dfSymbols.setGroupingSeparator(' ');
+        return dfSymbols;
+    }
+
     private static void numberFormat1()
     {
         double value = 123456789.456;
@@ -23,16 +31,22 @@ public class Main
     {
         double value = 123456789.456;
 
-        DecimalFormatSymbols dfSymbols = new DecimalFormatSymbols();
-        dfSymbols.setDecimalSeparator('.');
-        dfSymbols.setGroupingSeparator(' ');
+        DecimalFormatSymbols dfSymbols = getDecimalFormatSymbols();
 
         String pattern = "#,###.###";
         DecimalFormat df = new DecimalFormat(pattern, dfSymbols);
         System.out.println(df.format(value));
     }
 
+    private static void numberFormat3(double value)
+    {
+        DecimalFormatSymbols dfSymbols = getDecimalFormatSymbols();
 
+        String format = isInteger(value) ? "#" : "#,###.###";
+        String pattern = "#,###.###";
+        DecimalFormat df = new DecimalFormat(pattern, dfSymbols);
+        System.out.println(df.format(value));
+    }
 
     public static void main(String[] args)
     {
@@ -42,6 +56,18 @@ public class Main
 
         System.out.println("Example 2");
         numberFormat2();
+        System.out.println();
+
+        System.out.println("Example 3");
+        numberFormat3(1234.5678);
+        System.out.println();
+
+        System.out.println("Example 4");
+        numberFormat3(1234);
+        System.out.println();
+
+        System.out.println("Example 5");
+        numberFormat3(0);
         System.out.println();
     }
 }
