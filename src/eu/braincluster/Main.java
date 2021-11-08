@@ -42,9 +42,14 @@ public class Main
     {
         DecimalFormatSymbols dfSymbols = getDecimalFormatSymbols();
 
-        String format = isInteger(value) ? "#" : "#,###.###";
-        String pattern = "#,###.###";
+        String pattern = "#,###.##";
         DecimalFormat df = new DecimalFormat(pattern, dfSymbols);
+        System.out.println(df.format(value));
+    }
+
+    private static void numberFormat4(double value)
+    {
+        DoubleFormat df = new DoubleFormat();
         System.out.println(df.format(value));
     }
 
@@ -68,6 +73,22 @@ public class Main
 
         System.out.println("Example 5");
         numberFormat3(0);
+        System.out.println();
+
+        System.out.println("Example 6");
+        numberFormat4(1234.5678);
+        System.out.println();
+
+        System.out.println("Example 7");
+        numberFormat4(1234);
+        System.out.println();
+
+        System.out.println("Example 8");
+        numberFormat4(0);
+        System.out.println();
+
+        System.out.println("Example 9");
+        numberFormat4(-1234.5678);
         System.out.println();
     }
 }
